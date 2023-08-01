@@ -41,45 +41,49 @@ export default function Navbar() {
     const closeDrawer = () => setOpenDrawer(false);
 
     return (
-        <MyAppBar
-            elevation={0}>
-            <Toolbar
-                sx={{ justifyContent: matchesLg ? "space-between" : "center" }}
-                variant="dense">
-                <IconButton>
-                    <AppleIcon
-                        fontSize="small" />
-                </IconButton>
-                {!matchesLg &&
-                    <Tabs
-                        value={tabIndex}
-                        onChange={handleTabChange}
-                        indicatorColor="primary"
-                        textColor="secondary">
-                        {TABS.map(t => (
-                            <MyTab
-                                key={t}
-                                label={t} />
-                        ))}
-                    </Tabs>}
-                <div>
-                    {matchesLg &&
-                        <AppDrawer
-                            open={openDrawer}
-                            onOpen={showDrawer}
-                            onClose={closeDrawer}
-                            TABS={TABS} />}
+        <>
+            <MyAppBar
+                elevation={0}>
+                <Toolbar
+                    sx={{ justifyContent: matchesLg ? "space-between" : "center" }}
+                    variant="dense">
                     <IconButton>
-                        <SearchIcon
-                            fontSize="small"
-                            sx={{ mx: 1 }} />
-                    </IconButton>
-                    <IconButton>
-                        <WorkIcon
+                        <AppleIcon
                             fontSize="small" />
                     </IconButton>
-                </div>
-            </Toolbar>
-        </MyAppBar>
+                    {!matchesLg &&
+                        <Tabs
+                            value={tabIndex}
+                            onChange={handleTabChange}
+                            indicatorColor="primary"
+                            textColor="secondary">
+                            {TABS.map(t => (
+                                <MyTab
+                                    key={t}
+                                    label={t} />
+                            ))}
+                        </Tabs>}
+                    <div>
+                        {matchesLg &&
+                            <AppDrawer
+                                open={openDrawer}
+                                onOpen={showDrawer}
+                                onClose={closeDrawer}
+                                TABS={TABS} />}
+                        <IconButton>
+                            <SearchIcon
+                                fontSize="small"
+                                sx={{ mx: 1 }} />
+                        </IconButton>
+                        <IconButton>
+                            <WorkIcon
+                                fontSize="small" />
+                        </IconButton>
+                    </div>
+                </Toolbar>
+            </MyAppBar>
+            <Toolbar
+                variant="dense" />
+        </>
     );
 }
