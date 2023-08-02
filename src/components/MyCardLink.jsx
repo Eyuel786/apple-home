@@ -17,16 +17,19 @@ const LinkTextContainer = styled("span")(() => ({
     alignItems: "center",
 }));
 
-const LinkText = styled(Typography)(() => ({
-    fontSize: "22px"
+const LinkText = styled(Typography, {
+    shouldForwardProp: props => props !== "fontSize"
+})(({ fontSize }) => ({
+    fontSize: fontSize || "22px"
 }));
 
-export default function MyCardLink({ linkText }) {
+export default function MyCardLink({ linkText, fontSize }) {
 
     return (
         <Link>
             <LinkTextContainer>
-                <LinkText>
+                <LinkText
+                    fontSize={fontSize}>
                     {linkText}
                 </LinkText>
                 <KeyboardArrowRightIcon />

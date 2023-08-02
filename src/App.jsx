@@ -4,6 +4,7 @@ import image01 from "./assets/images/01.jpg";
 import image02 from "./assets/images/02.jpg";
 import image03 from "./assets/images/03.jpg";
 import HeadText from "./components/HeadText";
+import MyGrid from "./components/MyGrid";
 
 
 function App() {
@@ -24,8 +25,9 @@ function App() {
       <MyCard
         bgImage={image03}
         color="black"
-        title="iPhone 14 Pro"
+        title="iPhone 14"
         subtitle="Wonderfull." />
+      <MyGrid />
     </>
   );
 }
