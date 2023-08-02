@@ -1,10 +1,11 @@
 import MyCard from "./components/MyCard";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbar/Navbar";
 import image01 from "./assets/images/01.jpg";
 import image02 from "./assets/images/02.jpg";
 import image03 from "./assets/images/03.jpg";
 import HeadText from "./components/HeadText";
 import MyGrid from "./components/MyGrid";
+import Footer from "./components/footer/Footer";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         title="iPhone 14"
         subtitle="Wonderfull." />
       <MyGrid />
+      <Footer />
     </>
   );
 }
