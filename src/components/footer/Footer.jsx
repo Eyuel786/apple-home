@@ -10,9 +10,12 @@ const MainContainer = styled("div")(({ theme }) => ({
     padding: "1rem 0",
 }));
 
-const ContentContainer = styled("div")(() => ({
-    width: "60vw",
-    margin: "0 auto"
+const ContentContainer = styled("div")(({ theme }) => ({
+    width: "60%",
+    margin: "0 auto",
+    [theme.breakpoints.down("lg")]: {
+        width: "95%"
+    }
 }));
 
 const MyLink = styled("a")(() => ({
@@ -50,7 +53,8 @@ export default function Footer() {
                 <Divider sx={{ my: 1 }} />
                 <Grid
                     container
-                    justifyContent="space-between">
+                    justifyContent="space-between"
+                    rowSpacing={1}>
                     <Grid item>
                         <MutedText>
                             Copyright © 2023 Apple Inc. All rights reserved.
@@ -58,7 +62,11 @@ export default function Footer() {
                     </Grid>
                     <Grid item>
                         <div
-                            style={{ display: "flex", gap: "8px" }}>
+                            style={{
+                                display: "flex",
+                                gap: "6px",
+                                flexWrap: "wrap"
+                            }}>
                             <MutedLink>
                                 <MutedText>
                                     Privacy Policy

@@ -19,8 +19,11 @@ const LinkTextContainer = styled("span")(() => ({
 
 const LinkText = styled(Typography, {
     shouldForwardProp: props => props !== "fontSize"
-})(({ fontSize }) => ({
-    fontSize: fontSize || "22px"
+})(({ theme, fontSize }) => ({
+    fontSize: fontSize || "20px",
+    [theme.breakpoints.down("md")]: {
+        fontSize: fontSize || "17px"
+    }
 }));
 
 export default function MyCardLink({ linkText, fontSize }) {

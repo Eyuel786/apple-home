@@ -1,5 +1,7 @@
-import { Grid, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Accordion, AccordionDetails, AccordionSummary, Grid, List, ListItemButton, ListItemText, Menu, MenuItem, Typography, useMediaQuery } from "@mui/material";
+import { styled, useTheme } from "@mui/material/styles";
+import { useState } from "react";
 
 
 const FOOTER_LINKS = [
@@ -55,6 +57,12 @@ const FOOTER_LINKS = [
     }
 ];
 
+const MainMenu = styled(Typography)(({ theme }) => ({
+    color: theme.palette.text.secondary,
+    fontSize: "0.8rem",
+    fontWeight: 600
+}));
+
 const MyLink = styled("a")(() => ({
     textDecoration: "none",
     userSelect: "none",
@@ -65,9 +73,52 @@ const MyLink = styled("a")(() => ({
         cursor: "pointer",
         textDecoration: "underline"
     }
-}))
+}));
 
 export default function FooterGrid() {
+    const theme = useTheme();
+    const matchesLg = useMediaQuery(theme.breakpoints.down("lg"));
+    const [expanded, setExpanded] = useState(false);
+
+    const handleChange = panel => (event, isExpanded) => {
+        setExpanded(isExpanded ? panel : false);
+    };
+
+    const MyAccordion = FOOTER_LINKS.map(fl => (
+        <Accordion
+            elevation={0}
+            key={fl.menu}
+            expanded={expanded === fl.menu}
+            onChange={handleChange(fl.menu)}
+            sx={{ backgroundColor: theme.palette.grey[100] }}
+            disableGutters
+            square>
+            <AccordionSummary
+                id={fl.menu}
+                expandIcon={<ExpandMoreIcon />}>
+                <MainMenu>
+                    {fl.menu}
+                </MainMenu>
+            </AccordionSummary>
+            <AccordionDetails>
+                {fl.childMenus?.map(cm => (
+                    <MyLink
+                        key={cm}>
+                        <Typography
+                            color="text.secondary"
+                            sx={{ fontSize: "0.8rem" }}>
+                            {cm}
+                        </Typography>
+                    </MyLink>
+                ))}
+            </AccordionDetails>
+        </Accordion>
+    ));
+
+    if (matchesLg) {
+        return MyAccordion;
+    }
+
     return (
         <Grid
             container
@@ -76,24 +127,23 @@ export default function FooterGrid() {
             columnSpacing={6}
             rowSpacing={4}>
             {FOOTER_LINKS.map(fl => (
-                <Grid item>
+                <Grid
+                    key={fl.menu}
+                    item>
                     <Grid
                         container
                         direction="column"
                         rowSpacing={0.4}>
                         <Grid
                             item>
-                            <Typography
-                                color="text.secondary"
-                                sx={{
-                                    fontSize: "0.8rem",
-                                    fontWeight: 600
-                                }}>
+                            <MainMenu>
                                 {fl.menu}
-                            </Typography>
+                            </MainMenu>
                         </Grid>
                         {fl.childMenus.map(cm => (
-                            <Grid item>
+                            <Grid
+                                key={cm}
+                                item>
                                 <MyLink>
                                     <Typography
                                         color="text.secondary"

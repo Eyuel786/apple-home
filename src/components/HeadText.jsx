@@ -11,17 +11,23 @@ const Link = styled("a")(() => ({
     }
 }));
 
+const MyText = styled(Typography)(({ theme }) => ({
+    margin: "0.5rem auto",
+    [theme.breakpoints.down("md")]: {
+        width: "95%"
+    }
+}));
+
 
 export default function HeadText() {
     return (
-        <Typography
+        <MyText
             color="text.secondary"
             variant="subtitle2"
-            align="center"
-            sx={{ my: 1, mx: "4rem" }}>
+            align="center">
             Get $200–$640 in credit toward iPhone 14 or iPhone 14 Pro when you trade in iPhone 11 or higher.
             {" "}
             <Link>Shop iPhone &gt;</Link>
-        </Typography>
+        </MyText>
     );
 }

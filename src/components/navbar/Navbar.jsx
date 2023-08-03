@@ -45,7 +45,9 @@ export default function Navbar() {
             <MyAppBar
                 elevation={0}>
                 <Toolbar
-                    sx={{ justifyContent: matchesLg ? "space-between" : "center" }}
+                    sx={{
+                        justifyContent: matchesLg ? "space-between" : "center"
+                    }}
                     variant="dense">
                     <IconButton>
                         <AppleIcon
@@ -63,7 +65,7 @@ export default function Navbar() {
                                     label={t} />
                             ))}
                         </Tabs>}
-                    <div>
+                    <span>
                         {matchesLg &&
                             <AppDrawer
                                 open={openDrawer}
@@ -79,7 +81,7 @@ export default function Navbar() {
                             <WorkIcon
                                 fontSize="small" />
                         </IconButton>
-                    </div>
+                    </span>
                 </Toolbar>
             </MyAppBar>
             <Toolbar
